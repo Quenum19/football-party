@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Badge Saveurs Sunday</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="badge" id="badge">
+    <div class="badge-header">
+      <p class="event-title">Saveurs Sunday</p>
+    </div>
+    <div class="attendee-info">
+      <img src="images/logo.png" alt="Logo Saveurs Sunday" class="logo" />
+      <p class="name">ATTOUNBRE CAPISTRAN</p>
+      <p class="role">Resp. Mobilisation</p>
+    </div>
+    <div class="badge-footer"></div>
+  </div>
+
+  <button onclick="downloadBadge()">📥 Télécharger en image</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
