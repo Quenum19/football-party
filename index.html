@@ -1,27 +1,371 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Badge Saveurs Sunday</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiche Tournoi Night Football Party (Vertical)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column; /* Changed to column to stack poster and button */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a2e; /* Fond sombre */
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #e0e0e0;
+            padding: 20px; /* Add some padding around the whole content */
+        }
+
+        .poster-container {
+            width: 1080px; /* Largeur fixe pour Story/Reel */
+            height: 1920px; /* Hauteur fixe pour Story/Reel */
+            /* Updated background image path */
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(15, 20, 35, 0.85)), url('images/1.jpeg') no-repeat center center; /* Your image path */
+            background-size: cover;
+            border-radius: 25px; /* Optionnel, vous pouvez le retirer pour un bord franc */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Espacement flexible entre les sections */
+            padding: 70px 50px; /* Plus de padding vertical */
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 5px solid #8c52ff;
+            margin-bottom: 30px; /* Space between poster and button */
+        }
+
+        /* Effets de lumière/volume pour le design */
+        .poster-container::before, .poster-container::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+        }
+
+        .poster-container::before {
+            width: 400px; /* Ajusté pour le format vertical */
+            height: 400px;
+            top: -150px;
+            left: -150px;
+        }
+
+        .poster-container::after {
+            width: 500px; /* Ajusté pour le format vertical */
+            height: 500px;
+            bottom: -200px;
+            right: -200px;
+        }
+
+        /* Styles pour les emplacements de logos */
+        .logo-container {
+            position: absolute;
+            top: 40px; /* Plus d'espace depuis le haut */
+            width: 120px; /* Légèrement plus grand pour être visible en haut */
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-left {
+            left: 40px; /* Plus d'espace depuis les côtés */
+        }
+
+        .logo-right {
+            right: 40px;
+        }
+
+        .header {
+            color: #ffffff;
+            margin-bottom: 40px; /* Plus de marge sous le titre */
+            position: relative;
+            z-index: 1;
+            padding-top: 100px; /* Pour s'assurer que le titre est sous les logos */
+        }
+
+        .header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 6em; /* Encore plus grand pour le format vertical */
+            margin: 0;
+            line-height: 0.9;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ff9a00;
+        }
+
+        .header h1 span {
+            display: block;
+            font-size: 0.6em;
+            color: #e0e0e0;
+            margin-top: 10px;
+        }
+
+        .header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2em; /* Légèrement plus grand */
+            margin: 20px 0 0;
+            font-weight: 700;
+            color: #f0f0f0;
+        }
+
+        .subtitle {
+            font-size: 1.5em; /* Plus grand */
+            color: #c0c0c0;
+            margin-bottom: 60px; /* Plus de marge en dessous */
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px 60px; /* Plus d'espacement */
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 45px; /* Plus de padding */
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 50px; /* Plus de marge en dessous */
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .info-item {
+            font-size: 1.3em; /* Légèrement plus grand */
+            color: #f0f0f0;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-item strong {
+            color: #00bcd4;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .info-item i {
+            color: #8c52ff;
+            margin-right: 15px;
+            font-size: 1.5em;
+        }
+
+        .info-highlight {
+            font-size: 1.5em; /* Légèrement plus grand */
+            color: #e0e0e0;
+            font-weight: 800;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 15px 20px; /* Plus de padding */
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .details {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #e0e0e0;
+            padding: 30px; /* Plus de padding */
+            border-radius: 15px;
+            font-size: 1.5em; /* Plus grand */
+            line-height: 1.7;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .details h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.3em; /* Plus grand */
+            margin-top: 0;
+            margin-bottom: 20px; /* Plus de marge */
+            color: #ff9a00;
+            text-transform: uppercase;
+        }
+
+        .details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .details ul li {
+            margin-bottom: 12px; /* Plus de marge */
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .details ul li i {
+            color: #00bcd4;
+            margin-right: 12px;
+            font-size: 1.3em;
+            margin-top: 4px;
+        }
+
+        .details ul li strong {
+            color: #f0f0f0;
+            margin-right: 8px;
+        }
+
+        .footer-contact {
+            background-color: #8c52ff;
+            color: #ffffff;
+            padding: 25px; /* Plus de padding */
+            border-radius: 15px;
+            margin-top: 50px; /* Plus de marge en haut */
+            font-size: 1.5em; /* Plus grand */
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column; /* Force les éléments à s'empiler verticalement pour économiser de l'espace */
+            align-items: center; /* Centre les éléments dans la colonne */
+            gap: 8px; /* Espacement entre l'icône et le texte */
+        }
+
+        .footer-contact i {
+            margin-right: 0; /* Pas de marge à droite en mode colonne */
+            font-size: 1.3em; /* Légèrement plus grand */
+        }
+
+        /* Le texte dans le footer, pour gérer le passage à la ligne */
+        .footer-contact span {
+            display: block; /* Chaque ligne de texte sur une nouvelle ligne */
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* Style pour le bouton de téléchargement */
+        .download-button {
+            background-color: #8c52ff; /* Couleur bleue */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .download-button i {
+            font-size: 1.3em;
+        }
+
+        /* No responsive adjustments as per request */
+    </style>
 </head>
 <body>
-  <div class="badge" id="badge">
-    <div class="badge-header">
-      <p class="event-title">Saveurs Sunday</p>
-    </div>
-    <div class="attendee-info">
-      <img src="images/logo.png" alt="Logo Saveurs Sunday" class="logo" />
-      <p class="name">MICHELLE SIO</p>
-      <p class="role">PCO</p>
-    </div>
-    <div class="badge-footer"></div>
-  </div>
+    <div class="poster-container" id="poster">
+        <div class="logo-container logo-left">
+            <img src="images/LOGO-NEW-WINE-png.png" alt="Votre Logo">
+        </div>
+        <div class="logo-container logo-right">
+            <img src="images/Logo_MD-removebg-preview.png" alt="Logo Partenaire">
+        </div>
 
-  <button onclick="downloadBadge()">📥 Télécharger en image</button>
+        <div class="header">
+            <h1>GRAND TOURNOI DE FOOTBALL <br> <span>Championship</span></h1>
+            <h2>"Night Football Party"</h2>
+        </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="script.js"></script>
+        <p class="subtitle">Rejoignez l'aventure et montrez vos talents sur le terrain !</p>
+
+        <div class="info-grid">
+            <div class="info-item"><i class="fas fa-trophy"></i><strong>Nom :</strong> Night Football Party</div>
+            <div class="info-item"><i class="fas fa-calendar-alt"></i><strong>Date :</strong> Vendredi 25 juillet 2025</div>
+            <div class="info-item"><i class="fas fa-clock"></i><strong>Heure :</strong> 23h00 - 06h00</div>
+            <div class="info-item"><i class="fas fa-map-marker-alt"></i><strong>Lieu :</strong> Centre Sportif SACES</div>
+            <div class="info-item"><i class="fas fa-map-pin"></i><strong>Adresse :</strong> Cocody-Ancien camps</div>
+            <div class="info-item"><i class="fas fa-money-bill-wave"></i><strong>Prix par équipe :</strong> 20.000F</div>
+            <div class="info-item"><i class="fas fa-users"></i><span class="info-highlight"></i>10 équipes max. (10 joueurs/équipe)</span></div>
+            <div class="info-item"><i class="fas fa-hourglass-end"></i><span class="info-highlight"></i>Inscriptions avant le 23 juillet 2025 !</span></div>
+        </div>
+
+        <div class="details">
+            <h3>Détails du Tournoi :</h3>
+            <ul>
+                <li><i class="fas fa-futbol"></i><strong>Format :</strong> 10 équipes, matchs à élimination directe (20 min/match)</li>
+                <li><i class="fas fa-medal"></i><strong>Récompenses :</strong> Trophée (gagnant), médailles (finalistes), prix surprise</li>
+                <li><i class="fas fa-shoe-prints"></i><strong>Équipements :</strong> Chaussures à crampons, maillots</li>
+                <li><i class="fas fa-id-card"></i><strong>Licence :</strong> Chaque joueur devra présenter une licence valide.</li>
+                <li><i class="fas fa-cocktail"></i><strong>Extras :</strong> Buvette, stands de nourriture, animations, artistes, danse</li>
+                <li><i class="fas fa-users-cog"></i><strong>Public :</strong> Ouvert à tous (hommes et femmes)</li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <i class="fas fa-phone-alt"></i>
+            <span>Contact & Inscriptions :</span>
+            <span>+225 0160580445 / +225 07 08 18 74 40 (Appels ou WhatsApp)</span>
+        </div>
+    </div>
+
+    <button class="download-button" onclick="downloadPoster()">
+        <i class="fas fa-download"></i> Télécharger l'affiche
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    function downloadPoster() {
+        const poster = document.getElementById("poster");
+
+        html2canvas(poster, {
+            scale: 3,              // 📸 Très haute résolution (3x)
+            useCORS: true,         // Autorise le cross-origin pour images
+            allowTaint: false,     // Bloque les images "non CORS"
+            logging: false,        // Pas de logs dans la console
+            backgroundColor: null  // Garde la transparence si fond transparent
+        }).then(canvas => {
+            // Crée une image PNG du canvas
+            const imgData = canvas.toDataURL("image/png");
+
+            // Crée un lien pour déclencher le téléchargement
+            const link = document.createElement("a");
+            link.href = imgData;
+            link.download = "affiche-night-football-party.png";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }).catch(err => {
+            alert("❌ Impossible de télécharger l'affiche.\nVérifiez que toutes les images sont bien chargées.");
+            console.error(err);
+        });
+    }
+</script>
+
 </body>
 </html>
